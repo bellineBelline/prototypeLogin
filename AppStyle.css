@@ -5,3 +5,9 @@
 .btn-common {
     background-color: red;
 }
+
+/* 入力部のラベル */
+.lbl-caption {
+    display: inline-block;
+    width: 150px;
+}

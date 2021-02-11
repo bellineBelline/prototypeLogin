@@ -1,0 +1,17 @@
+### 認可エンドポイント
+
+GET https://hiraiwa-testlogin.auth.ap-northeast-1.amazoncognito.com/oauth2/authorize?
+
+response_type=code&client_id=1o6crhdm6d3ram5b7u15t9i9dn&redirect_uri=https://YOUR_APP/redirect_uri&
+state=STATE&scope=openid+profile+aws.cognito.signin.user.admin
+
+
+### トークンエンドポイント
+
+POST https:/hiraiwa-testlogin.auth.ap-northeast-1.amazoncognito.com/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic aSdxd892iujendek328uedj
+
+grant_type=authorization_code&
+client_id=djc98u3jiedmi283eu928&code=AUTHORIZATION_CODE&
+redirect_uri=com.myclientapp://myclient/redirect

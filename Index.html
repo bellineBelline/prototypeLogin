@@ -4,8 +4,18 @@
         <!-- 本ファイルはUTF8で記述する -->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+        <title>Sign Up</title>
+
+        <!-- ライブラリのインポート -->
+        <script src="js/jsbn.js"></script>
+        <script src="js/jsbn2.js"></script>
+        <script src="js/sjcl.js"></script>
+        <script src="js/aws-sdk.min.js"></script>
+        <script src="js/aws-cognito-sdk.min.js"></script>
+        <script src="js/amazon-cognito-identity.min.js"></script>
+
         <!-- CSSをインポートする -->
-        <link rel="stylesheet" href="/AppStyle.css" />
+        <link rel="stylesheet" href="AppStyle.css" />
     </head>
 </html>
 <body>
@@ -14,13 +24,32 @@
     <!--    ユーザー入力部分                      -->
     <!-- ====================================== -->
     <div>
-        <input id='txtbox-username-login' value='username' placeholder="your username" />
-        <input id='txtbox-password-login' value='password' placeholder="your password" />
-        <button id="btn-submit-login" class="btn-common" >
+        <div id="signup">
+            <h1>Sign Up</h1>
+            <form name='form-signup'>
+                <span class='lbl-caption'>User ID(Email)</span>
+                <input type="text" id="txtbox-email" placeholder="Email Address" value="">
+                <br/>
+                <span class='lbl-caption'>Last Name</span>
+                <input type="text" id="txtbox-lastName" placeholder="Last Name" value="">
+                <br/>
+                <span class='lbl-caption'>First Name</span>
+                <input type="text" id="txtbox-firstName" placeholder="First Name" value="">
+                <br/>
+                <spa class='lbl-caption'>Password</span>
+                <input type="password" id="txtbox-password" placeholder="Password" value="">
+                <br/><br/>
+
+
+              <input type="button" id="createAccount" value="Create Account" onclick='tapSignUp()'>
+            </form>
+
+            <button class='btn-common' onclick='signUp()' >新規作成</button>
+          </div>
     </div>
 
     <!-- ====================================== -->
     <!--    スクリプトファイルの読み込み           -->
     <!-- ====================================== -->
-    <script src="/AppSystem.js"></script>
+    <script src="AppSystem.js"></script>
 </body>
