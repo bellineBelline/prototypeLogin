@@ -26,25 +26,28 @@
     <div>
         <div id="signup">
             <h1>Sign Up</h1>
-            <form name='form-signup'>
-                <span class='lbl-caption'>User ID(Email)</span>
-                <input type="text" id="txtbox-email" placeholder="Email Address" value="">
-                <br/>
-                <span class='lbl-caption'>Last Name</span>
-                <input type="text" id="txtbox-lastName" placeholder="Last Name" value="">
-                <br/>
-                <span class='lbl-caption'>First Name</span>
-                <input type="text" id="txtbox-firstName" placeholder="First Name" value="">
-                <br/>
-                <spa class='lbl-caption'>Password</span>
-                <input type="password" id="txtbox-password" placeholder="Password" value="">
-                <br/><br/>
 
+            <span class='lbl-caption'>User ID(Email)</span>
+            <input type="text" id="txtbox-email" placeholder="Email Address" value="tsuyoshi.hiraiwa@mail.raven-g.com">
+            <br/>
+            <span class='lbl-caption'>Last Name</span>
+            <input type="text" id="txtbox-lastName" placeholder="Last Name" value="tsuyoshi">
+            <br/>
+            <span class='lbl-caption'>First Name</span>
+            <input type="text" id="txtbox-firstName" placeholder="First Name" value="hiraiwa">
+            <br/>
+            <spa class='lbl-caption'>Password</span>
+            <input type="password" id="txtbox-password" placeholder="Password" value="Myfriends244">
+            <br/><br/>
 
-              <input type="button" id="createAccount" value="Create Account" onclick='tapSignUp()'>
-            </form>
+            <button class='btn-common' onclick='tapSignUp()' >新規作成</button>
+            <button class='btn-common' onclick='tapLogin()' >ログイン</button>
+            <button class='btn-common' onclick='tapLogout()' >ログアウト</button>
+          </div>
 
-            <button class='btn-common' onclick='signUp()' >新規作成</button>
+          <!-- ログインの結果表示用 -->
+          <div id='div-resutlogin'>
+
           </div>
     </div>
 
