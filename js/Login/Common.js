@@ -8,7 +8,9 @@ const ID_IDPOOL = 'ap-northeast-1:6825e999-0c18-4ebe-b556-75c3ebed9885';    // I
 const APP_REGION = "ap-northeast-1";                                        // アプリのリージョン
 
 const KEY_LOCALSTORAGE_EMAIL = "signup_email";                              // サインアップしたときのメールアドレス
-
+const KEY_LOCALSTORAGE_ACCESSTOKEN = "signin_accessToken";                  // もちろん実際にはlocalStorageに保存したりはしない
+const KEY_LOCALSTORAGE_IDTOKEN = "signin_idToken";                          // もちろん実際にはlocalStorageに保存したりはしない
+const KEY_LOCALSTORAGE_REFRESHTOKEN = "signin_refreshToken";                // もちろん実際にはlocalStorageに保存したりはしない
 
 // --------------------------------------------------
 //  ユーザープール関連
@@ -20,3 +22,6 @@ const poolData = {
 
 // ユーザープール
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+// 公開鍵の取得API
+const URL_COGNITO_PUBLICKEY = `https://cognito-idp.${APP_REGION}.amazonaws.com/${ID_USERPOOL}/.well-known/jwks.json`

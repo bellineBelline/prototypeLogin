@@ -55,6 +55,7 @@ function activateUser() {
         } else {
             // アクティベーション成功の場合、サインイン画面に遷移
             console.log("アクティベート完了")
+            moveSignIn()
         }
     });
 };
