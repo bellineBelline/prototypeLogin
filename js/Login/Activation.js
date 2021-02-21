@@ -5,6 +5,7 @@
 // ======================================================================
 const inputEmail = document.getElementById('input_email');                  // 入力したメールアドレス
 const inputActivateKey = document.getElementById('input_activationKey');    // 入力したアクティベートキー
+const divErrorMessage = document.getElementById('div_message');             // エラー表示用のメッセージボックス
  
 // ======================================================================
 //  画面読み込み時の処理
@@ -26,12 +27,13 @@ window.onload = function() {
 //  ユーザーのアクティベーション処理
 // ======================================================================
 function activateUser() {
-    const username = document.getElementById("txtbox-email").value; 
-    const keyActivation = document.getElementById("activationKey").value
-    var activationKey = $("#activationKey").val();
+    const email = inputEmail.value; 
+    const activationKey = inputActivateKey.value
     
     // 何か1つでも未入力の項目がある場合、処理を中断
     if (!email | !activationKey) {
+        // 未入力項目がある旨を表示
+        divErrorMessage.innerText = "未入力の項目があります。";
         return false;
     } 
 	
@@ -46,11 +48,21 @@ function activateUser() {
         if (err) {
             // アクティベーション失敗の場合、エラーメッセージを画面に表示
             if (err.message != null) {
-                $("div#message span").empty();
-                $("div#message span").append(err.message);
+                // それとわかるように表示する
+                divErrorMessage.innerText = "";
+                divErrorMessage.innerText = err.message;
             }
         } else {
             // アクティベーション成功の場合、サインイン画面に遷移
+            console.log("アクティベート完了")
         }
     });
 };
+
+
+// ======================================================================
+//  サインイン画面に遷移する
+// ======================================================================
+function moveSignIn() {
+    document.location.href = "Login_SignIn.html";
+}

@@ -1,37 +1,51 @@
 <!-- ************************************************************  -->
-<!-- ログインアクティベーション -->
+<!-- ユーザーの有効化け画面                                         -->
 <!-- ************************************************************  -->
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Activation</title>
+        <title>登録したユーザーの有効化</title>
         <!-- 必要なライブラリの取り込み -->
-        <script src="js/anime.js"></script>
-        <script src="js/aws-cognito/jsbn.js"></script>
-        <script src="js/aws-cognito/jsbn2.js"></script>
-        <script src="js/aws-cognito/sjcl.js"></script>
-        <script src="js/aws-cognito/aws-sdk.min.js"></script>
-        <script src="js/aws-cognito/aws-cognito-sdk.min.js"></script>
-        <script src="js/aws-cognito/amazon-cognito-identity.min.js"></script>
-        <script src="js/activation.js"></script>
+        <script src="js/Login/sdk/jsbn.js"></script>
+        <script src="js/Login/sdk/jsbn2.js"></script>
+        <script src="js/Login/sdk/sjcl.js"></script>
+        <script src="js/Login/sdk/aws-sdk.min.js"></script>
+        <script src="js/Login/sdk/aws-cognito-sdk.min.js"></script>
+        <script src="js/Login/sdk/amazon-cognito-identity.min.js"></script>
+
+        <!-- CSSをインポートする -->
+        <link rel="stylesheet" href="AppStyle.css" />
     </head>
 
     <body>
+        <!-- ------------------------------------------------------- -->
+        <!--    ユーザーの入力部分                                     -->
+        <!-- ------------------------------------------------------- -->
         <div id="activation_wrap">
             <h1>認証コードの確認</h1>
             <p>登録したEmail宛に認証コードを送信しました。</p>
-            <div><span style="color: red;">All fields are required.</span></div>
-
-            <span style="display: inline-block; width: 150px;">Email Address</span>
+            <span  class='lbl-caption'>Email Address</span>
             <input type="text" id="input_email" placeholder="Email Address">
             <br/>
-            <span style="display: inline-block; width: 150px;">Activation Key</span>
+            <span  class='lbl-caption'>Activation Key</span>
             <input type="text" id="input_activationKey" placeholder="Activation Key">
             <br/><br/>
 
+            <!-- 何かしらエラーがあったときの表示メッセージ -->
+            <div id="div_message" style="color: red;"></div>
+
             <!-- 認証ボタン -->
-            <button type="btn-common" onclick="activateUser()">
+            <button class="btn-common" onclick="activateUser()">認証コードを送信</button>
         </div>
+
+
+        <!-- ------------------------------------------------------- -->
+        <!--    スクリプトファイルの読み込み                            -->
+        <!-- ------------------------------------------------------- -->
+        <!-- ログインの共通ソース -->
+        <script type="text/javascript" src="js/Login/Common.js"></script>
+        <!-- アクティベーションのスクリプト -->
+        <script type="text/javascript" src="js/Login/Activation.js"></script>
     </body>
 </html>

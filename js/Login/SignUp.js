@@ -9,6 +9,7 @@ const inputLastName = document.getElementById("txtbox-lastName").value;        	
 const inputFirstName = document.getElementById("txtbox-firstName").value;      	// 入力された苗字
 const inputPassword = document.getElementById("txtbox-password").value;        	// 入力されたパスワード
 
+const divErrorMessage = document.getElementById('div_message');             // エラー表示用のメッセージボックス
 var divResult = document.getElementById("div-resutlogin");					// サインアップ/サインイン結果表示領域
 
 // ======================================================================
@@ -54,112 +55,41 @@ function tapSignUp() {
     userPool.signUp(inputUsername, inputPassword, attributeList, null, function(err, result){
 	    if (err) {
 			// サインアップに失敗した場合の処理
-	    	alert(err);
+	    	divErrorMessage(err);
 			divResult.innerText = err
 			return;
 	    } else {
             //　ローカルストレージに登録したメールアドレスを格納しておく
             window.localStorage.setItem(KEY_LOCALSTORAGE_EMAIL, inputUsername);
 	      	// サインアップ成功の場合、アクティベーション画面に遷移する
+            cognitoUser = result.user;
+            console.log('登録したユーザー：' + cognitoUser.getUsername());
+            console.log('resultの内容' + result);
             moveActivation()
 	    }
     });
 }
 
+
 // ======================================================================
+//  画面遷移
+// ======================================================================
+// --------------------------------------------------
+//  サインイン画面に遷移する
+// --------------------------------------------------
+function moveSignIn() {
+    document.location.href = "Login_SignIn.html";
+}
+
+
+// --------------------------------------------------
 //  ユーザー有効化の画面に遷移する
-// ======================================================================
+// --------------------------------------------------
 function moveActivation() {
     document.location.href = "Login_Activation.html";
 }
 
 
-// ======================================================================
-//  ログイン処理
-// ======================================================================
-function tapLogin() {
-    var authenticationData = {
-        Username : username,
-        Password : password,
-    };
-    var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
-    var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-    var userData = {
-        Username : username,
-        Pool : userPool
-    };
-
-	// ユーザー属性の情報（提出用）
-	var attributeList = [];
-	// ユーザ属性リストの生成
-	var dataFamilyName = {
-		Name : "family_name",
-		Value : lastName
-	}
-	var dataGivenName = {
-		Name : "given_name",
-		Value : firstName
-	}
-	var attributeFamilyName = new AmazonCognitoIdentity.CognitoUserAttribute(dataFamilyName);
-	var attributeGivenName = new AmazonCognitoIdentity.CognitoUserAttribute(dataGivenName);
-			
-	attributeList.push(attributeFamilyName);
-	attributeList.push(attributeGivenName);
-
-    var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-    cognitoUser.authenticateUser(authenticationDetails, {
-        onSuccess: function (result) {
-            alert("ログイン成功");
-            // アクセストークン
-            var accessToken = result.accessToken.jwtToken;
-            // アクセストークの有効期限
-            var exp = result.accessToken.payload.exp;
-            // IDトークン
-            var idToken = result.idToken.jwtToken;
-            // 更新トークン
-            var refreshToken = result.refreshToken.token;
-            // ログイン時の処理を書く...
-
-			divResult.innerText = divResult.innerText + '\n' +  accessToken
-			divResult.innerText = divResult.innerText + '\n' +  exp
-			divResult.innerText = divResult.innerText + '\n' +  idToken
-			divResult.innerText = divResult.innerText + '\n' +  refreshToken
-        },
-
-        onFailure: function(err) {
-            alert("ログイン失敗");
-            // ログイン失敗時の処理を書く...
-			divResult.innerText = err
-        },
-
-        newPasswordRequired(userAttributes, requiredAttributes) {
-           alert("ユーザーのステータスがFORCE_CHANGE_PASSWORD");
-            
-
-		   divResult.innerText = userAttributes
-		   divResult.innerText = divResult.innerText + '\n' +  requiredAttributes
-
-           // 仮パスワードを確定させる
-           cognitoUser.completeNewPasswordChallenge(password, {}, this);
-        }
-    });
-}
-
-
-
-// ======================================================================
-//  ログアウト処理
-// ======================================================================
-function tapLogout() {
-    var userPool = AmazonCognitoIdentity.CognitoUserPool(poolData);
-    var cognitoUser = userPool.getCurrentUser();
-    if (cognitoUser) {
-        // ログアウト
-        cognitoUser.signOut();
-    }
-    // ログアウト時の処理
-	divResult.innerText = "ログアウト"
- }
 
 
 //  ■■ ユーザー属性の情報を取得する手段を探す。
