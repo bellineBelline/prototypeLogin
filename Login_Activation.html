@@ -1,0 +1,37 @@
+<!-- ************************************************************  -->
+<!-- ログインアクティベーション -->
+<!-- ************************************************************  -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Activation</title>
+        <!-- 必要なライブラリの取り込み -->
+        <script src="js/anime.js"></script>
+        <script src="js/aws-cognito/jsbn.js"></script>
+        <script src="js/aws-cognito/jsbn2.js"></script>
+        <script src="js/aws-cognito/sjcl.js"></script>
+        <script src="js/aws-cognito/aws-sdk.min.js"></script>
+        <script src="js/aws-cognito/aws-cognito-sdk.min.js"></script>
+        <script src="js/aws-cognito/amazon-cognito-identity.min.js"></script>
+        <script src="js/activation.js"></script>
+    </head>
+
+    <body>
+        <div id="activation_wrap">
+            <h1>認証コードの確認</h1>
+            <p>登録したEmail宛に認証コードを送信しました。</p>
+            <div><span style="color: red;">All fields are required.</span></div>
+
+            <span style="display: inline-block; width: 150px;">Email Address</span>
+            <input type="text" id="input_email" placeholder="Email Address">
+            <br/>
+            <span style="display: inline-block; width: 150px;">Activation Key</span>
+            <input type="text" id="input_activationKey" placeholder="Activation Key">
+            <br/><br/>
+
+            <!-- 認証ボタン -->
+            <button type="btn-common" onclick="activateUser()">
+        </div>
+    </body>
+</html>

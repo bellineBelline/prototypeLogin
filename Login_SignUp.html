@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 本ファイルはUTF8で記述する -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <title>Sign Up</title>
+
+        <!-- ライブラリのインポート -->
+        <script src="js/Login/sdk/jsbn.js"></script>
+        <script src="js/Login/sdk/jsbn2.js"></script>
+        <script src="js/Login/sdk/sjcl.js"></script>
+        <script src="js/Login/sdk/aws-sdk.min.js"></script>
+        <script src="js/Login/sdk/aws-cognito-sdk.min.js"></script>
+        <script src="js/Login/sdk/amazon-cognito-identity.min.js"></script>
+
+        <!-- CSSをインポートする -->
+        <link rel="stylesheet" href="AppStyle.css" />
+    </head>
+    <body>
+
+        <!-- ====================================== -->
+        <!--    ユーザー入力部分                      -->
+        <!-- ====================================== -->
+        <div>
+            <div id="signup_wrap">
+                <h1>Sign Up</h1>
+                <span class='lbl-caption'>User ID(Email)</span>
+                <input type="text" id="txtbox-email" placeholder="Email Address" value="tsuyoshi.hiraiwa@mail.raven-g.com">
+                <br/>
+                <span class='lbl-caption'>Last Name</span>
+                <input type="text" id="txtbox-lastName" placeholder="Last Name" value="tsuyoshi">
+                <br/>
+                <span class='lbl-caption'>First Name</span>
+                <input type="text" id="txtbox-firstName" placeholder="First Name" value="hiraiwa">
+                <br/>
+                <spa class='lbl-caption'>Password</span>
+                <input type="password" id="txtbox-password" placeholder="Password" value="Myfriends244">
+                <br/><br/>
+    
+                <button class='btn-common' onclick='tapSignUp()' >新規作成</button>
+                <button class='btn-common' onclick='tapLogin()' >ログイン</button>
+                <button class='btn-common' onclick='tapLogout()' >ログアウト</button>
+              </div>
+    
+              <!-- ログインの結果表示用 -->
+              <div id='div-resutlogin'>
+              </div>
+        </div>
+    
+        <!-- ====================================== -->
+        <!--    スクリプトファイルの読み込み           -->
+        <!-- ====================================== -->
+        <!-- ログインの共通ソース -->
+        <script type="text/javascript" src="js/Login/Common.js"></script>
+        <!-- サインアップのスクリプト -->
+        <script type="text/javascript" src="js/Login/SignUp.js"></script>
+        <!-- アクティベーションのスクリプト -->
+        <script type="text/javascript" src="js/Login/Activation.js"></script>
+    </body>
+</html>
